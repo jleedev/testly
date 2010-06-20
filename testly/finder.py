@@ -2,7 +2,7 @@ from os import getcwd, walk
 import os.path
 import re
 
-from testly.testcase import TestCase
+from testly.testcase import TestModule
 
 
 module_regex = re.compile('^test_.*.py$')
@@ -21,4 +21,4 @@ class Finder(object):
             if os.path.split(dirpath)[1] == 'tests':
                 for name in filenames:
                     if module_regex.match(name):
-                        yield TestCase(self.top, dirpath, name)
+                        yield TestModule(self.top, dirpath, name)

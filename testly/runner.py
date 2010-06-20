@@ -13,16 +13,17 @@ class Runner():
         Runs all the tests and returns the result
         '''
         for test in self.finder:
-            yield self.run_test(test)
+            for result in self.run_test(test):
+                yield result
 
     def run_test(self, test):
         '''
         Runs the test in isolation and returns the result
         '''
-        test()
+        return test()
 
     def __nonzero__(self):
-        return 1
+        return True
 
 
 def emit(result):
@@ -37,9 +38,9 @@ def runner():
     runner = Runner()
     for result in runner.run():
         if result:
-            emit('E')
-        else:
             emit('.')
+        else:
+            emit('E')
     emit('\n')
     if runner:
         return 0

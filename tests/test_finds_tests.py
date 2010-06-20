@@ -3,8 +3,5 @@ from testly.finder import Finder
 
 def test_finds_modules_in_cwd():
     finder = Finder()
-    for test in finder:
-        assert test.path == 'tests.test_finds_tests'
-        break
-    else:
-        assert False, "Found too many tests"
+    lst = [test.name for test in finder]
+    assert lst == ['tests.test_finds_tests'], "Got %s" % lst
