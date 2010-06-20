@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+cd "$(dirname "$0")"
 
 if python testly.py
 then
